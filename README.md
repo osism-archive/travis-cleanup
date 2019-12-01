@@ -1,12 +1,27 @@
 # travis-cleanup
 
+We use Travis CI for testing our public repositories. The jobs create instances, keypairs, ..
+on our OpenStack environment. Sometimes artifacts remain after the completion of a job, e.g.
+because it was terminated unexpectedly. These artifacts occupy resources unnecessarily and
+are regularly deleted by this script.
+
+Workflow
+--------
+
+![Workflow](https://raw.githubusercontent.com/osism/travis-cleanup/master/images/workflow.png)
+
+1. Get all existing security groups, keypairs, instances, and floating ip addresses
+2. Extract the Travis CI job id from the names of the resources and get the status of th
+   jobs from Travis CI
+3. If the job has already been completed, delete the corresponding resource
+
 Usage
 -----
 
-* create `configuration/clouds.yml` on basis of `configuration/clouds.yml.sample`
-* create `configuration/secure.yml` on basis of `configuration/secure.yml.sample`
-* build the container image with `docker-compose build`
-* start the container with `docker-compose up -d`
+* Create `configuration/clouds.yml` on basis of `configuration/clouds.yml.sample`
+* Create `configuration/secure.yml` on basis of `configuration/secure.yml.sample`
+* Build the container image with `docker-compose build`
+* Start the container with `docker-compose up -d`
 
 License
 -------
