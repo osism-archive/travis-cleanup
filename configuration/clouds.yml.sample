@@ -1,0 +1,10 @@
+---
+clouds:
+  molecule:
+    auth:
+      username:
+      project_name:
+      auth_url:
+      project_domain_name:
+      user_domain_name:
+    identity_api_version: 3
